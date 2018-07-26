@@ -1,0 +1,38 @@
+header.main-header
+	// Logo
+	a.logo(href='/')
+		// mini logo for sidebar mini 50x50 pixels
+		span.logo-mini
+			b A
+			| BC
+		// logo for regular state and mobile devices
+		span.logo-lg
+			b A
+			| BC
+	// Header Navbar: style can be found in header.less
+	nav.navbar.navbar-static-top
+		// Sidebar toggle button
+		a.sidebar-toggle(data-toggle='push-menu', href='#', role='button')
+			span.sr-only Toggle navigation
+			span.icon-bar
+			span.icon-bar
+			span.icon-bar
+		.navbar-custom-menu
+			ul.nav.navbar-nav
+				li.dropdown.user.user-menu
+					a.dropdown-toggle(data-toggle='dropdown', href='#')
+						img.user-image(src=(account && account.avatar) ? account.avatarUrl : 'http://www.elle.vn/wp-content/uploads/2017/07/25/hinh-anh-dep-17.jpg', alt='Account Image')
+						span.hidden-xs #{account ? account.fullName : 'Ẩn danh'}
+					ul.dropdown-menu
+						// User image
+						li.user-header
+							img.img-circle(src=(account && account.avatar) ? account.avatarUrl : 'http://www.elle.vn/wp-content/uploads/2017/07/25/hinh-anh-dep-17.jpg', alt='User Image')
+							p
+								| #{account ? account.fullName : ''}
+								small Member since Nov. 2012
+						// Menu Footer
+						li.user-footer
+							.pull-left
+								a.btn.btn-default.btn-flat(href='/account/profile') Trang cá nhân
+							.pull-right
+								a.btn.btn-default.btn-flat(href='/auth/logout') Đăng xuất

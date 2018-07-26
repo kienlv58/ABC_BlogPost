@@ -1,0 +1,71 @@
+doctype html
+html
+  head
+	meta(charset='utf-8')
+	meta(http-equiv='X-UA-Compatible', content='IE=edge')
+	title Login
+	// Tell the browser to be responsive to screen width
+	meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
+	// Bootstrap
+	link(href='/themes/admin-lte/libs/bootstrap/dist/css/bootstrap.min.css', rel='stylesheet')
+	// Font Awesome
+	link(href='/themes/admin-lte/libs/font-awesome/css/font-awesome.min.css', rel='stylesheet')
+	style(type='text/css').
+		.checkbox label {
+			
+		}
+		.checkbox label input {
+		   width: 14px;
+		   height: 14px;
+		   margin: 2px 0 0;
+		}
+  // ADD THE CLASS fixed TO GET A FIXED HEADER AND SIDEBAR LAYOUT
+  // the fixed layout is not compatible with sidebar-mini
+  body.hold-transition.skin-blue.fixed.sidebar-mini
+	#login-overlay.modal-dialog
+		.modal-content
+			.modal-header
+				h4#myModalLabel.modal-title.text-center #{i18n.__('LOGIN_TITLE')}
+			.modal-body
+				.row
+					.col-lg-6.col-md-6
+						.well
+							form#loginForm(method='POST', action='/auth/login', novalidate='novalidate')
+								.form-group
+									label.control-label(for='accountName') #{i18n.__('ACCOUNT_NAME')}
+									input#accountname.form-control(name='accountName', type='text', value='', required='', placeholder=i18n.__('PLACEHOLDER_USERNAME'))
+									span.help-block
+								.form-group
+									label.control-label(for='password') #{i18n.__('PASSWORD')}
+									input#password.form-control(name='password', type='password', value='', required='', placeholder=i18n.__('PLACEHOLDER_PASSWORD'))
+									span.help-block
+								#loginErrorMsg.alert.alert-error.hide Wrong username or password
+								.checkbox
+									label
+										input#remember(name='remember', type='checkbox')
+										|  #{i18n.__('REMEMBER_ME')}
+								button.btn.btn-success.btn-block(type='submit') #{i18n.__('LOGIN')}
+								a.btn.btn-default.btn-block(href='/auth/forgot-password') #{i18n.__('FORGOT_PASSWORD')}
+					.col-lg-6.col-md-6
+						p.lead.text-center
+							| #{i18n.__('SOCIAL_LOGIN_TITLE')}
+							//- span.text-success FREE
+						ul.list-unstyled.text-center(style='line-height: 2')
+							li.btn.btn-default.fb-login(style='background:#3b5998;color:#fff;width:100%;max-width:222px;text-align:left;')
+								a(href='/auth/facebook', style='color: #fff;text-decoration: none;')
+									span.fa.fa-facebook.text-success(style='color:#fff;width:20px;')
+									|  #{i18n.__('LOGIN_FACEBOOK')}
+							li.btn.btn-default.gplus-login(style='background:#e74c3d;color:#fff;width:100%;max-width:222px;text-align:left;margin-top:5px;')
+								a(href='/auth/google', style='color: #fff;text-decoration: none;')
+									span.fa.fa-google-plus.text-success(style='color:#fff;width:20px;')
+									|  #{i18n.__('LOGIN_GOOGLE')}
+							
+						//-     a(href='/read-more/')
+						//-         u Read more
+						//- p
+						//-     a.btn.btn-info.btn-block(href='/new-customer/') Yes please, register now!
+
+	// jQuery 
+	script(src='/themes/admin-lte/libs/jquery/dist/jquery.min.js', type='text/javascript')
+	// Bootstrap
+	script(src='/themes/admin-lte/libs/bootstrap/dist/js/bootstrap.min.js', type='text/javascript')

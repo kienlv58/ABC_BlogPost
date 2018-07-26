@@ -1,5 +1,32 @@
-extends layout
+extends ./layout/default
 
 block content
-  h1= title
-  p Welcome to #{title}
+  // Content Header (Page header)
+  section.content-header
+    h1
+      | Dashboard
+    ol.breadcrumb
+      li.active
+        i.fa.fa-dashboard
+        |  Dashboard
+  // Main content
+  section.content
+    .callout.callout-info
+      h4 Tip!
+      p
+        | Add the fixed class to the body tag to get this layout. The fixed layout is your best option if your sidebar
+        | is bigger than your content because it prevents extra unwanted scrolling.
+    // Default box
+    .box
+      .box-header.with-border
+        h3.box-title Title
+        .box-tools.pull-right
+          button.btn.btn-box-tool(data-toggle='tooltip', data-widget='collapse', type='button', title='Collapse')
+            i.fa.fa-minus
+          button.btn.btn-box-tool(data-toggle='tooltip', data-widget='remove', type='button', title='Remove')
+            i.fa.fa-times
+      .box-body
+        | Start creating your amazing application!
+      // /.box-body
+      .box-footer
+        | Footer

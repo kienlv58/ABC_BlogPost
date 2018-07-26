@@ -1,0 +1,111 @@
+// Left side column. contains the sidebar
+- function checkPermission (accessRouter){
+-	let accessRouterParams = accessRouter.split('/');
+-	if (!accountPermissions) {
+-		return true;	
+-	}
+-   for (let i=0; i<accountPermissions.length; i++) {
+-		let permissionParams = accountPermissions[i].split('/');
+-		for (let j=0; j<permissionParams.length; j++) {
+-			if (permissionParams[j] == '$' && accessRouterParams[j]) {
+-				accessRouterParams[j] = '$';
+-			}
+-		}
+-		if (accessRouterParams.join('/') == permissionParams.join('/')) {
+-			return true;	
+-		}
+-	}
+-   return false;
+- }
+aside.main-sidebar
+	// sidebar: style can be found in sidebar.less
+	section.sidebar
+		// Sidebar user panel
+		.user-panel
+			.pull-left.image
+				img.img-circle(src=(account && account.avatar) ? account.avatarUrl : 'http://www.elle.vn/wp-content/uploads/2017/07/25/hinh-anh-dep-17.jpg', alt='Account Image')
+			.pull-left.info
+				p #{account ? account.fullName : 'Anonymous'}
+				a(href='#')
+					i.fa.fa-circle.text-success
+					|  Online
+		// search form
+		form.sidebar-form(action='#', method='get')
+			.input-group
+				input.form-control(name='q', type='text', placeholder='Search...')
+				span.input-group-btn
+					button#search-btn.btn.btn-flat(name='search', type='submit')
+						i.fa.fa-search
+		// /.search form
+		// sidebar menu: : style can be found in sidebar.less
+		ul.sidebar-menu(data-widget='tree')
+			li.header
+				i.fa.fa-bars &nbsp;&nbsp;MAIN MENU
+			if (checkPermission('/'))
+				li(class=(current == 'dashboard') ? 'active' : null)
+					a(href='/')
+						i.fa.fa-dashboard
+						span Dashboard
+			if (checkPermission('/news-category') || checkPermission('/news'))
+				li.treeview(class=(current == 'news-category' || current == 'news') ? 'active' : null)
+					a(href='#')
+						i.fa.fa-newspaper-o
+						span Tin tức
+						span.pull-right-container
+							i.fa.fa-angle-left.pull-right
+					ul.treeview-menu
+						li(class=(current == 'news-category') ? 'active' : null)
+							a(href='/news-category')
+								i.fa.fa-briefcase
+								|  Danh mục
+						li(class=(current == 'news') ? 'active' : null)
+							a(href='/news')
+								i.fa.fa-pencil
+								|  Bài viết
+			if (checkPermission('/account'))
+				li.treeview(class=(current == 'account') ? 'active' : null)
+					a(href='#')
+						i.fa.fa-user
+						span Tài khoản
+						span.pull-right-container
+							i.fa.fa-angle-left.pull-right
+					ul.treeview-menu
+						if (checkPermission('/account'))
+							li(class=(current == 'account') ? 'active' : null)
+								a(href='/account')
+									i.fa.fa-list-alt
+									span Danh sách
+			if (checkPermission('/role') || checkPermission('permission/') || true)
+				li.treeview(class=(current == 'role' || current == 'permission') ? 'active' : null)
+					a(href='#')
+						i.fa.fa-cogs
+						span Quản lý truy cập
+						span.pull-right-container
+							i.fa.fa-angle-left.pull-right
+					ul.treeview-menu
+						li(class=(current == 'role') ? 'active' : null)
+							a(href='/role')
+								i.fa.fa-users
+								span Vai trò
+						li(class=(current == 'permission') ? 'active' : null)
+							a(href='/permission')
+								i.fa.fa-user-secret
+								span Quyền truy cập
+			li.header
+				i.fa.fa-cogs &nbsp;&nbsp;SETTINGS
+			li.treeview(class=(current == 'config' || current == 'log') ? 'active' : null)
+				a(href='#')
+					i.fa.fa-cog
+					span Hệ thống
+					span.pull-right-container
+						i.fa.fa-angle-left.pull-right
+				ul.treeview-menu
+					li(class=(current == 'setting') ? 'active' : null)
+						a(href='/config')
+							i.fa.fa-cog
+							span Cấu hình
+					li(class=(current == 'log') ? 'active' : null)
+						a(href='/log')
+							i.fa.fa-history
+							span Lịch sử
+	// /.sidebar

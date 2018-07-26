@@ -1,9 +1,8 @@
-var express = require('express');
-var router = express.Router();
+let appRouters = function(app) {
+  const loginRouter = require("./auth");
+  const dashBoardRouter = require("./dashboard");
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
-
-module.exports = router;
+  app.use("/", dashBoardRouter);
+  app.use("/login", loginRouter);
+};
+module.exports = appRouters;
