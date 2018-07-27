@@ -2,7 +2,9 @@ var express = require("express");
 var router = express.Router();
 
 const AuthController = require("../controllers/AuthController");
+const middleware = require("../middleware/appMiddleware");
 /* GET login page. */
-router.get("/", AuthController.getLogin);
+// router.get("/login",middleware.isAuthenticated, AuthController.getLogin);
+router.get("/login", AuthController.getLogin);
 
 module.exports = router;
