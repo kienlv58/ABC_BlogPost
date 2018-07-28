@@ -50,12 +50,12 @@ aside.main-sidebar
 				li.treeview(class=(current == 'news-category' || current == 'news') ? 'active' : null)
 					a(href='#')
 						i.fa.fa-newspaper-o
-						span Tin tức
+						span Quản lý nội dung
 						span.pull-right-container
 							i.fa.fa-angle-left.pull-right
 					ul.treeview-menu
 						li(class=(current == 'news-category') ? 'active' : null)
-							a(href='/news-category')
+							a(href='/category')
 								i.fa.fa-briefcase
 								|  Danh mục
 						li(class=(current == 'news') ? 'active' : null)
