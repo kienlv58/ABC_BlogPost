@@ -1,0 +1,25 @@
+extends ../layout/default
+
+block content
+    include ./form
+    // Content Header (Page header)
+    section.content-header
+        h1
+            | Thêm danh mục tin tức
+        ol.breadcrumb
+            li
+                a(href='/')
+                    i.fa.fa-dashboard
+                    |  Dashboard
+            li
+                a(href='/news-category')
+                    i.fa.fa-briefcase
+                    |  Danh mục
+            li.active Thêm mới
+    // Main content
+    section.content
+        .row
+            .col-lg-12.col-md-12
+                +form(data ? data : {})
+                    // /.box-body
+    

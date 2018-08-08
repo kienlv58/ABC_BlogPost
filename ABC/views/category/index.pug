@@ -41,18 +41,18 @@ block content
 	// Content Header (Page header)
 	section.content-header
 		h1
-			| Danh mục tin tức
+			| Danh mục 
 		ol.breadcrumb
 			li
 				a(href='/')
 					i.fa.fa-dashboard
 					|  Dashboard
-			li.active Danh mục tin tức
+			li.active Danh mục
 	// Main content
 	section.content
 		.row
 			.col-xs-12
-				a.btn.btn-success(href='/news-category/create') Tạo mới
+				a.btn.btn-success(href=parentId?'/category-create/'+ parentId:'/category-create/') Tạo mới
 				hr
 				.box
 					.box-header
@@ -72,18 +72,21 @@ block content
 									th(name='categoryName') Tên danh mục
 									th(name='slug') Slug
 									th(name='statusDisplay') Trạng thái
-									th.text-center(name='actions', actions={view: '/news-category/view', edit: '/news-category/edit', delete: '/news-category/delete'}, style='width: 140px;') Hành động
+									th(name='subCategory') Số danh mục con
+									th.text-center(name='actions', actions={view: '/view', edit: '/news-category/edit', delete: '/news-category/delete'}, style='width: 140px;') Hành động
 							tbody
-								//- each dt, i in data
-								//- 	tr
-								//- 		td #{i+1}
-								//- 		td #{dt.categoryName}
-								//- 		td #{dt.slug}
-								//- 		td #{dt.statusDisplay}
-								//- 		td.text-center
-								//- 			a.user-action.btn.btn-default(href='/news-category/view/' + dt._id)
-								//- 				em.fa.fa-eye
-								//- 			a.user-action.btn.btn-success(href='/news-category/edit/' + dt._id)
-								//- 				em.fa.fa-pencil
-								//- 			button.user-action.btn.btn-danger(onclick='return confirmDelete(this, "Bạn có chắc chắn muốn xóa tài khoản này không?", "/news-category/delete/' + dt._id + '")')
-								//- 				em.fa.fa-trash
+								each dt, i in data
+									tr
+										td #{i+1}
+										td #{dt.categoryName}
+										td #{dt.slug}
+										td #{dt.statusDisplay}
+										td.text-center
+											a(href='/category/' + dt._id) #{dt.subCategory?dt.subCategory.length:0} 
+										td.text-center
+											a.user-action.btn.btn-default(href='/news-category/view/' + dt._id)
+												em.fa.fa-eye
+											a.user-action.btn.btn-success(href='/news-category/edit/' + dt._id)
+												em.fa.fa-pencil
+											button.user-action.btn.btn-danger(onclick='return confirmDelete(this, "Bạn có chắc chắn muốn xóa tài khoản này không?", "/news-category/delete/' + dt._id + '")')
+												em.fa.fa-trash

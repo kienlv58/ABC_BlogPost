@@ -1,0 +1,47 @@
+mixin form(data={})
+    .box.box-warning
+        form.form-horizontal(role='form', method='POST', action=data._id ? '/category/update/' + data._id : '/category-create')
+            .box-header.with-border
+                h3.box-title Thông tin danh mục bài viết
+            // /.box-header
+            .box-body
+                .form-group
+                    .hidden
+                        input.form-control(name='parentCategory', type='text', value=(JSON.stringify( data.parentCategory)))
+                .form-group
+                    .col-lg-2.col-md-2(class=errors && errors.status && 'has-error')
+                            label.control-label Danh mục cha
+                            select#select-status.form-control(name='parentId')
+                                each item,i in data.parentCategory
+                                    option(value=item._id, selected=(data.parentId === item ) ? true : false) #{item.categoryName}
+                                 
+                    .col-lg-6.col-md-6(class=errors && errors.categoryName && 'has-error')
+                        label.control-label Tên danh mục
+                        input.form-control(name='categoryName', type='text', value=(data.categoryName || ''), placeholder='Nhập tên danh mục')
+                        if errors && errors.categoryName
+                            span.help-block #{errors.categoryName.msg}
+                    
+                .form-group
+                    .col-lg-8.col-md-8(class=errors && errors.slug && 'has-error')
+                        label.control-label Slug
+                        input.form-control(name='slug', type='text', value=(data.slug || ''), placeholder='category-slug')
+                        if errors && errors.slug
+                            span.help-block #{errors.slug.msg}
+                .form-group
+                    
+                    .col-lg-8.col-md-8(class=errors && errors.description && 'has-error')
+                        label.control-label Mô tả
+                        textarea.form-control(name='description', rows=3, value=(data.description || ''), placeholder='Mô tả') #{data.description}
+                        if errors && errors.description
+                            span.help-block #{errors.description.msg}
+                .form-group
+                    .col-lg-2.col-md-2(class=errors && errors.status && 'has-error')
+                        label.control-label Trạng thái
+                        select#select-status.form-control(name='status')
+                            option(value=1, selected=(data.status == 1) ? true : false) Public
+                            option(value=0, selected=(data.status == 0) ? true : false) Draft
+                // Box footer        
+            .box-footer
+                button.btn.btn-success(type='submit')
+                    i.fa.fa-check
+                    |&nbsp;#{data._id ? 'Cập nhật' : 'Tạo mới'}

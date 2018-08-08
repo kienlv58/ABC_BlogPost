@@ -6,7 +6,8 @@ const categorySchema = new mongoose.Schema(
     categoryName: { type: String, unique: true },
     slug: { type: String },
     description: { type: String },
-    isParent: { type: boolean },
+    isRoot: { type: Boolean },
+    parent: { type: mongoose.Schema.Types.ObjectId, ref: "Category" },
     subCategory: [{ type: mongoose.Schema.Types.ObjectId, ref: "Category" }],
     posts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Post" }],
     createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "Account" },
@@ -18,6 +19,10 @@ const categorySchema = new mongoose.Schema(
 
 categorySchema.set("toJSON", {
   vitruals: true
+});
+
+categorySchema.virtual("statusDisplay").get(function() {
+  return this.status ? "Public" : "Draft";
 });
 
 /*

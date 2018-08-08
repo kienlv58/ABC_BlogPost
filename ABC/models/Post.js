@@ -64,7 +64,7 @@ postSchema.statics.cCreate = function(data, cb) {
  * Remove post from category
  */
 
-postMessage.pre("remove", function(next) {
+postSchema.pre("remove", function(next) {
   var post = this;
   post.model("Category").update(
     { _id: post.category },
