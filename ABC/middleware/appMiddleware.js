@@ -1,5 +1,5 @@
 const AccountModel = require("./../models/Account");
-const publicUrl = "/login";
+const publicUrl = "/admin/login";
 
 /**
  * Login Required middleware.

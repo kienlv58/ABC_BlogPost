@@ -6,4 +6,5 @@ const middleware = require("../middleware/appMiddleware");
 // Create Account
 router.post("/account", AccountController.createAccount);
 
+router.get("/register", AccountController.getRegister);
 module.exports = router;

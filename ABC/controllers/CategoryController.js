@@ -2,6 +2,7 @@ const CategoryModel = require("../models/Category");
 
 //get root category
 exports.getCategory = (req, res, next) => {
+  console.log("session----", req.session);
   CategoryModel.find({ isRoot: true }).exec((err, data) => {
     res.render("category/index", {
       data: data,
@@ -76,8 +77,8 @@ exports.postNewCategory = (req, res, next) => {
           subCategory: null,
           posts: null,
           description: req.body.description || null,
-          status: req.body.status || 0
-          // createdBy: req.session.account._id
+          status: req.body.status || 0,
+          createdBy: req.session.account._id
         };
         let newRecord = new CategoryModel(postData);
         newRecord.save((err, result) => {
@@ -87,7 +88,7 @@ exports.postNewCategory = (req, res, next) => {
               "errors",
               "Có lỗi xảy ra. Vui lòng thử lại" + JSON.stringify(err)
             );
-            return res.redirect("/category");
+            return res.redirect("/admin/category");
           }
           if (!isRoot) {
             // if is subcategory, add to sub in parent by update parent
@@ -99,7 +100,7 @@ exports.postNewCategory = (req, res, next) => {
                 parentCate.subCategory = !parentCate.subCategory
                   ? [result._id]
                   : [...parentCate.subCategory, result._id];
-                //    parentCate.updatedBy = req.session.account._id;
+                parentCate.updatedBy = req.session.account._id;
 
                 parentCate.save((err, updated) => {
                   if (err) {
@@ -108,13 +109,13 @@ exports.postNewCategory = (req, res, next) => {
                       "errors",
                       "Có lỗi xảy ra. Vui lòng thử lại" + JSON.stringify(err)
                     );
-                    return res.redirect("/category");
+                    return res.redirect("/admin/category");
                   }
                   req.flash(
                     "success",
                     "Danh mục " + result.categoryName + " đã được tạo"
                   );
-                  return res.redirect("/category");
+                  return res.redirect("/admin/category");
                 });
               }
             });
@@ -124,7 +125,7 @@ exports.postNewCategory = (req, res, next) => {
               "success",
               "Danh mục " + result.categoryName + " đã được tạo"
             );
-            return res.redirect("/category");
+            return res.redirect("/admin/category");
           }
         });
       } catch (e) {

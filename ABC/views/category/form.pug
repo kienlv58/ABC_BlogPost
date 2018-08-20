@@ -1,6 +1,6 @@
 mixin form(data={})
     .box.box-warning
-        form.form-horizontal(role='form', method='POST', action=data._id ? '/category/update/' + data._id : '/category-create')
+        form.form-horizontal(role='form', method='POST', action=data._id ? '/admin/category/update/' + data._id : '/admin/category-create')
             .box-header.with-border
                 h3.box-title Thông tin danh mục bài viết
             // /.box-header

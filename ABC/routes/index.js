@@ -4,9 +4,9 @@ let appRouters = function(app) {
   const accountRouter = require("./account");
   const categoryRouter = require("./category");
 
-  app.use("/", dashBoardRouter);
-  app.use("/", loginRouter);
-  app.use("/", accountRouter);
-  app.use("/", categoryRouter);
+  app.use("/admin", dashBoardRouter);
+  app.use("/admin", loginRouter);
+  app.use("/admin", accountRouter);
+  app.use("/admin", categoryRouter);
 };
 module.exports = appRouters;

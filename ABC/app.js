@@ -10,6 +10,7 @@ var flash = require("express-flash");
 var mongoose = require("mongoose");
 var dotenv = require("dotenv");
 var appRouters = require("./routes/index");
+var passport = require("passport");
 
 /**
  * Read .env

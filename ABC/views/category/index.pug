@@ -44,7 +44,7 @@ block content
 			| Danh mục 
 		ol.breadcrumb
 			li
-				a(href='/')
+				a(href='/admin')
 					i.fa.fa-dashboard
 					|  Dashboard
 			li.active Danh mục
@@ -52,7 +52,7 @@ block content
 	section.content
 		.row
 			.col-xs-12
-				a.btn.btn-success(href=parentId?'/category-create/'+ parentId:'/category-create/') Tạo mới
+				a.btn.btn-success(href=parentId?'/admin/category-create/'+ parentId:'/admin/category-create/') Tạo mới
 				hr
 				.box
 					.box-header
@@ -82,11 +82,11 @@ block content
 										td #{dt.slug}
 										td #{dt.statusDisplay}
 										td.text-center
-											a(href='/category/' + dt._id) #{dt.subCategory?dt.subCategory.length:0} 
+											a(href='/admin/category/' + dt._id) #{dt.subCategory?dt.subCategory.length:0} 
 										td.text-center
-											a.user-action.btn.btn-default(href='/news-category/view/' + dt._id)
+											a.user-action.btn.btn-default(href='/admin/news-category/view/' + dt._id)
 												em.fa.fa-eye
-											a.user-action.btn.btn-success(href='/news-category/edit/' + dt._id)
+											a.user-action.btn.btn-success(href='/admin/news-category/edit/' + dt._id)
 												em.fa.fa-pencil
 											button.user-action.btn.btn-danger(onclick='return confirmDelete(this, "Bạn có chắc chắn muốn xóa tài khoản này không?", "/news-category/delete/' + dt._id + '")')
 												em.fa.fa-trash

@@ -41,9 +41,9 @@ aside.main-sidebar
 		ul.sidebar-menu(data-widget='tree')
 			li.header
 				i.fa.fa-bars &nbsp;&nbsp;MAIN MENU
-			if (checkPermission('/'))
+			if (checkPermission('/admin'))
 				li(class=(current == 'dashboard') ? 'active' : null)
-					a(href='/')
+					a(href='/admin')
 						i.fa.fa-dashboard
 						span Dashboard
 			if (checkPermission('/news-category') || checkPermission('/news'))
@@ -55,7 +55,7 @@ aside.main-sidebar
 							i.fa.fa-angle-left.pull-right
 					ul.treeview-menu
 						li(class=(current == 'news-category') ? 'active' : null)
-							a(href='/category')
+							a(href='/admin/category')
 								i.fa.fa-briefcase
 								|  Danh mục
 						li(class=(current == 'news') ? 'active' : null)

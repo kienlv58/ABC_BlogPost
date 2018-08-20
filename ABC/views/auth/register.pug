@@ -1,0 +1,58 @@
+doctype html
+html
+	head
+		meta(charset='utf-8')
+		meta(http-equiv='X-UA-Compatible', content='IE=edge')
+		title Register
+		// Tell the browser to be responsive to screen width
+		meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
+		// Bootstrap
+		link(href='/themes/admin-lte/libs/bootstrap/dist/css/bootstrap.min.css', rel='stylesheet')
+		// Font Awesome
+		link(href='/themes/admin-lte/libs/font-awesome/css/font-awesome.min.css', rel='stylesheet')
+		style(type='text/css').
+			.checkbox label {
+				
+			}
+			.checkbox label input {
+			width: 14px;
+			height: 14px;
+			margin: 2px 0 0;
+			}
+	// ADD THE CLASS fixed TO GET A FIXED HEADER AND SIDEBAR LAYOUT
+	// the fixed layout is not compatible with sidebar-mini
+	body.hold-transition.skin-blue.fixed.sidebar-mini
+		#login-overlay.modal-dialog
+			.modal-content
+				.modal-header
+					h4#myModalLabel.modal-title.text-center Register
+				.modal-body
+					.row
+						.col-lg-12.col-md-12
+							.well
+								form#loginForm(method='POST', action='/admin/account', novalidate='novalidate')
+									.form-group
+										label.control-label(for='userName') UserName
+										input#accountname.form-control(name='userName', type='text', value='', required='', placeholder='username')
+										span.help-block
+									.form-group
+										label.control-label(for='password') Password
+										input#password.form-control(name='password', type='password', value='', required='', placeholder='password')
+										span.help-block
+									.form-group
+										label.control-label(for='displayName') Display Name
+										input#accountname.form-control(name='displayName', type='text', value='', required='', placeholder='display name')
+										span.help-block
+									.form-group
+										label.control-label(for='private_code') Private Code
+										input#password.form-control(name='private_code', type='password', value='', required='', placeholder='private code')
+										span.help-block
+									#loginErrorMsg.alert.alert-error.hide some errors
+									
+									button.btn.btn-success.btn-block(type='submit') Register
+						
+
+		// jQuery 
+		script(src='/themes/admin-lte/libs/jquery/dist/jquery.min.js', type='text/javascript')
+		// Bootstrap
+		script(src='/themes/admin-lte/libs/bootstrap/dist/js/bootstrap.min.js', type='text/javascript')
